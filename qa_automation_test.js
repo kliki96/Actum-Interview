@@ -11,15 +11,12 @@ it('Fill first and second question.', function() {
     cy.get('[data-value="Check this"]')
     .click({multiple: true})
 
-    // var date = new Date(); // dneska
-    // date.setDate(date.getDate() + 5); // dneska + 5 dni
-    // console.log(date);
+    var currentDatePlusFive = Cypress.moment().add(5, 'd').format('YYYY-MM-DD')
 
-    // const todayPlusfive = Cypress.moment().format('dd-MM-yyyy')
-
-    // cy.get('input[class*=exportInput][type=date]')
-    // .dblclick()
-    // .type(todayPlusfive)
+    cy.get('input[class*=exportInput][type=date]')
+    .dblclick()
+    .type(currentDatePlusFive)
+    console.log(currentDatePlusFive)
 
 })
 
@@ -109,22 +106,13 @@ it('Fill next questions and go back to the first step.', function() {
         .get('div[class="exportSelectPopup quantumWizMenuPaperselectPopup"]')
         .contains('Black')
         .click()
-    
-        cy.get('div[class="exportSelectPopup quantumWizMenuPaperselectPopup"]')
-        .should('not.be.visible')
-    
+        .wait(1000)
+
         .get("span > span:contains(Další)")
         .should('be.visible')
         .click()
     })
 
-    // .get('div[class="freebirdFormviewerViewItemsItemItem HasError"]')
-    // .contains('Tato otázka je povinná.')
-    // .should('not.be.visible')   
-
-    // .get("span > span:contains(Další)")
-    // .should('be.visible')
-    // .click()
 
     it('Fill last question and send the form.', function() {
         cy.get('div[jsname="ibnC6b"]')
@@ -136,26 +124,19 @@ it('Fill next questions and go back to the first step.', function() {
         .click()
     })
 
-    // cy.get('div[class="freebirdFormviewerViewItemsItemItem"]').then(($answer) => {
-    //         if ($answer.contains('Black')) {
-    //             cy.get("span > span:contains(Další)")
-    //             .should('be.visible')
-    //             .click()
-    //         } else {
-    //             cy.get('div[class="exportSelectPopup quantumWizMenuPaperselectPopup"]')
-    //                     .contains('Black')
-    //                     .click()
-    //         }
-    //       })
 
-    // cy.get('div[class="freebirdFormviewerViewItemsItemItem"]').then(($btn) => {
-    //     if ($btn.contains('HasError')) {
-    //         cy.get('div[class="exportSelectPopup quantumWizMenuPaperselectPopup"]')
-    //         .contains('Black')
-    //         .click()
-    //     } else {
-    //       cy.get("span > span:contains(Další)")
-    //       .should('be.visible')
-    //       .click()
-    //     }
-    //   })
+    // it('Check if filled.', function() {
+    //     cy.get('div[class="freebirdFormviewerViewItemsItemItem"]').then(($answer) => {
+    //         console.log($answer)
+    //         // if ($answer.contains('Black')) {
+    //         //     cy.get("span > span:contains(Další)")
+    //         //     .should('be.visible')
+    //         //     .click()
+    //         // } else {
+    //         //     cy.get('div[class="exportSelectPopup quantumWizMenuPaperselectPopup"]')
+    //         //             .contains('Black')
+    //         //             .click()
+    //         // }
+    //       })
+    // })
+
